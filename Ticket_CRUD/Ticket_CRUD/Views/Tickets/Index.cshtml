@@ -1,0 +1,55 @@
+﻿@*The @model directive specifies the type of the model passed to a view or page:*@
+@*IEnumerable Exposes an enumerator, which supports a simple iteration over a non-generic collection.*@
+@model IEnumerable<Ticket_CRUD.Models.Ticket>
+
+@*goes to the master layout and insert into the ViewData["Title"] there*@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<p>
+    @*If no asp-controller attribute is specified, the default controller calling the view executing the current view is used.*@
+    <a asp-action="Create" class = "btn btn-success">Create New</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* this will cause the html to render the property of the class model name*@
+                @* the  m => m.Title is an anonymous function, don't let the function's name confuse you*@
+                @*you can put any name like: m or model just like this example*@
+                @*but you need to put the property name correctly*@
+                @Html.DisplayNameFor(m => m.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statement)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+                    @* this will cause the html to render the value of the property of the class model*@
+                    <a asp-action="Edit" asp-route-id="@item.Id" class ="d-inline-block text-truncate " style="max-width: 150px;" >@Html.DisplayFor(modelItem => item.Title) </a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class ="d-inline-block text-truncate " style="max-width: 150px;" >@Html.DisplayFor(modelItem => item.Statement)</a>
+                </td>
+                <td>
+                    @*asp-route-id is wild card route*@
+                    @*@item.Id will be passed into the edit controller with an item ID*@
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info" >&nbsp;Edit&nbsp;</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id" class = "btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
