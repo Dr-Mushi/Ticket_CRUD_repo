@@ -1,2 +1,2 @@
 # Ticket_CRUD_repo
-ASP.NET core3.1 CRUD and registration practice
+ASP.NET core 3.1 CRUD and registration practice
