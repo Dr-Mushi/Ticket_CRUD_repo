@@ -31,8 +31,8 @@ namespace Ticket_CRUD.Repositories
 
         public async Task<SignInResult> PasswordSignInAsync(LogInModel logInModel)
         {
-            var user = await _userManager.FindByEmailAsync(logInModel.Email);
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, logInModel.Password,isPersistent:false, lockoutOnFailure:false);
+            //var user = await _userManager.FindByEmailAsync(logInModel.Email);
+            var result = await _signInManager.PasswordSignInAsync(logInModel.Email, logInModel.Password,isPersistent:false, lockoutOnFailure:false);
             //var result = await  _signInManager.PasswordSignInAsync(logInModel.Email, logInModel.Password , false, false);
             return result;
         }
